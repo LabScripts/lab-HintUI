@@ -10,7 +10,7 @@ A simple Ui to display players current task. Can be used for jobs, quests, etc.
 
 Usage:
 
-exports['lab-HintUI']:Show(desctription) -> description must be a string.
+exports['lab-HintUI']:Show(description) -> description must be a string.
 
 exports['lab-HintUI']:Hide() -> To hide the Ui
 
