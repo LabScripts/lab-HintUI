@@ -3,6 +3,7 @@ var x = false
 window.addEventListener('message', function(event) {
 	if (event.data.action == 'show') {
 		$("body").fadeOut(500);
+		$("#title" ).text(event.data.title);
 		$(".description" ).text(event.data.desc);
 		if (x) {
 			$(".wrap").animate({left: '-3%'}, "slow");
