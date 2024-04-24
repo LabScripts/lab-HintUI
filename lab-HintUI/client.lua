@@ -1,11 +1,17 @@
 local isOpen = false
 
-function Show(desc)
-    SendNUIMessage({
-        action = 'show',
-        desc = desc,
-    })
-    isOpen = true
+function Show(desc, title)
+	if title then
+		title = title
+	else
+		title = 'Current Task'
+	end
+    	SendNUIMessage({
+        	action = 'show',
+        	desc = desc,
+		title = title,
+    	})
+    	isOpen = true
 end
 
 function Hide()
@@ -28,5 +34,5 @@ local keybind = lib.addKeybind({
     end
 })
 
--- exports['lab-HintUI']:Show(desc)
+-- exports['lab-HintUI']:Show(desc, title) -> Title is optional
 -- exports['lab-HintUI']:Hide()
