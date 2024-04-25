@@ -1,7 +1,6 @@
 window.addEventListener('message', function(event) {
 	const {action, data} = event.data;
 	if (action == 'show') {
-		console.log(data.desc)
 		$("body").fadeOut(500);
 		$("#title").text(data.title);
 		$(".description").text(data.desc);
