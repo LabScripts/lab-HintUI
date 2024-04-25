@@ -1,38 +1,47 @@
+local hintUISettings = require 'config'
+
 local isOpen = false
 
-function Show(desc, title)
-	if title then
-		title = title
-	else
-		title = 'Current Task'
-	end
-    	SendNUIMessage({
-        	action = 'show',
-        	desc = desc,
-		title = title,
-    	})
-    	isOpen = true
+--- @param action string
+--- @param data any
+local function nuiMessage(action, data)
+    SendNUIMessage({
+        action = action,
+        data = data
+    })
 end
 
+--- @param desc string
+--- @param title? string
+function Show(desc, title)
+	nuiMessage('show', {desc = desc, title = title or hintUISettings.title})
+	isOpen = true
+end
+
+exports('Show', Show)
+
 function Hide()
-	SendNUIMessage({action = 'hide'})
+	nuiMessage('hide')
     isOpen = false
 end
 
-RegisterCommand('hint', function()
-	Show('Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.')
-end)
+exports('Hide', Hide)
 
 local keybind = lib.addKeybind({
-    name = 'hint',
-    description = 'Hide Hint',
-    defaultKey = 'G',
-    onPressed = function(self)
-        if isOpen then
-            Hide()
-        end
+    name = hintUISettings.hide.name,
+    description = hintUISettings.hide.description,
+    defaultKey = hintUISettings.hide.defaultKey,
+    onPressed = function()
+    if not isOpen then return end
+        Hide()
     end
 })
+
+if hintUISettings.testCommand.status then
+    RegisterCommand(hintUISettings.testCommand.name, function()
+        Show(hintUISettings.testCommand.description, 'Test title')
+    end)
+end
 
 -- exports['lab-HintUI']:Show(desc, title) -> Title is optional
 -- exports['lab-HintUI']:Hide()
