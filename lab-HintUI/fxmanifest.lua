@@ -1,22 +1,23 @@
-fx_version 'adamant'
-
+fx_version 'cerulean'
 game 'gta5'
+lua54 'yes'
 
 author 'Dogo#1950'
 description 'HintUI'
-version '1.0'
-lua54 'yes'
+license 'GPL-3.0'
+repository 'https://github.com/LabScripts/lab-HintUI'
+version '1.0.0'
 
 ui_page 'web/ui.html'
+
+files {
+	'config.lua',
+	'web/**'
+}
 
 client_scripts {
 	'@ox_lib/init.lua',
 	'client.lua'
 }
 
-files {
-	'web/*.*',
-}
-
-export 'Show'
-export 'Hide'
+dependency 'ox_lib'

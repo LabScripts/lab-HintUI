@@ -1,18 +1,14 @@
-var x = false
-
 window.addEventListener('message', function(event) {
-	if (event.data.action == 'show') {
+	const {action, data} = event.data;
+	if (action == 'show') {
+		console.log(data.desc)
 		$("body").fadeOut(500);
-		$("#title" ).text(event.data.title);
-		$(".description" ).text(event.data.desc);
-		if (x) {
-			$(".wrap").animate({left: '-3%'}, "slow");
-			$(".wrap").animate({left: '1%'}, "slow");
-		}
+		$("#title").text(data.title);
+		$(".description").text(data.desc);
 		$("body").fadeIn(500);
-		x = true
-	} else if (event.data.action == 'hide') {
+		$(".wrap").animate({left: '-3%'}, "slow");
+		$(".wrap").animate({left: '1%'}, "slow");
+	} else if (action == 'hide') {
 		$("body").fadeOut(500);
-		x = false
 	}
 })
