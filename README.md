@@ -10,9 +10,12 @@ A simple Ui to display players current task. Can be used for jobs, quests, etc.
 
 Usage:
 
-exports['lab-HintUI']:Show(desc, title) -> Description must be a string. Title is optional.
+```lua
 
-exports['lab-HintUI']:Hide() -> To hide the Ui
+exports['lab-HintUI']:Show(desc, title) ---> Description must be a string. Title is optional.
+
+exports['lab-HintUI']:Hide()  ---> To hide the Ui
+```
 
 Depedencies:
   - ox_lib
